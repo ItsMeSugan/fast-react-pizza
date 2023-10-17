@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
-function Button({ children, disabled, to, type }) {
+function Button({ children, disabled, to, type, onClick }) {
   const base =
     "group relative inline-block items-center justify-start overflow-hidden rounded-full bg-yellow-500 font-medium transition-all hover:bg-white";
   const styles = {
@@ -13,11 +14,21 @@ function Button({ children, disabled, to, type }) {
   if (to)
     return (
       <Link to={to} className={styles[type]}>
-        <span className="absolute inset-0 rounded-full border-0 border-white transition-all duration-100 ease-linear group-hover:border-[25px]"></span>
+        <span className="absolute inset-0  rounded-full border-0 border-white transition-all duration-100 ease-linear group-hover:border-[25px]"></span>
         <span className="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-stone-800">
           {children}
         </span>
       </Link>
+    );
+
+  if (onClick)
+    return (
+      <button onClick={onClick} disabled={disabled} className={styles[type]}>
+        <span className="absolute inset-0 rounded-full border-0 border-white transition-all duration-100 ease-linear group-hover:border-[25px]"></span>
+        <span className="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-stone-800">
+          {children}
+        </span>
+      </button>
     );
 
   return (
